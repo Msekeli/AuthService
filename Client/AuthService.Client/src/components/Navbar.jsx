@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <div className="w-full bg-blue-600 text-white px-6 py-3 flex justify-between items-center shadow">
-      <h1 className="font-semibold text-lg">Auth System</h1>
+      <h1 className="font-semibold text-lg">Auth Service</h1>
 
       <button
         onClick={handleLogout}
