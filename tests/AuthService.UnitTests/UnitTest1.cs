@@ -1,4 +1,4 @@
-﻿namespace AuthService.UnitTests;
+namespace AuthService.UnitTests;
 
 public class UnitTest1
 {

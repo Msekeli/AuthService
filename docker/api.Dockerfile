@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
-COPY ../ ./
+COPY . ./
 RUN dotnet restore
 RUN dotnet publish src/AuthService.Api/AuthService.Api.csproj -c Release -o /out
 
