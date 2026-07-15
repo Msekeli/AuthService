@@ -4,6 +4,8 @@ public class User
 {
     public Guid Id { get; private set; }
 
+    public string ClientId { get; private set; } = string.Empty;
+
     public string FirstName { get; private set; } = string.Empty;
 
     public string LastName { get; private set; } = string.Empty;
@@ -15,10 +17,14 @@ public class User
     public DateTime CreatedAt { get; private set; }
 
     // Constructor used when creating a new user in the application
-    public User(string firstName, string lastName, string email, string passwordHash)
+    public User(string clientId, string firstName, string lastName, string email, string passwordHash)
     {
         Id = Guid.NewGuid();
         CreatedAt = DateTime.UtcNow;
+
+        ClientId = !string.IsNullOrWhiteSpace(clientId)
+            ? clientId
+            : throw new ArgumentException("Client id is required.", nameof(clientId));
 
         FirstName = !string.IsNullOrWhiteSpace(firstName)
             ? firstName

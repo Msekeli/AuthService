@@ -18,6 +18,10 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(x => x.Id);
 
+            entity.Property(x => x.ClientId)
+                .IsRequired()
+                .HasMaxLength(100);
+
             entity.Property(x => x.FirstName)
                 .IsRequired()
                 .HasMaxLength(100);
@@ -30,7 +34,7 @@ public class AppDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(200);
 
-            entity.HasIndex(x => x.Email)
+            entity.HasIndex(x => new { x.ClientId, x.Email })
                 .IsUnique();
 
             entity.Property(x => x.PasswordHash)

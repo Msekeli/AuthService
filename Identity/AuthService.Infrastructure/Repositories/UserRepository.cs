@@ -20,10 +20,10 @@ public class UserRepository : IUserRepository
         await _context.SaveChangesAsync(ct);
     }
 
-    public async Task<User?> GetByEmailAsync(string email, CancellationToken ct = default)
+    public async Task<User?> GetByEmailAsync(string clientId, string email, CancellationToken ct = default)
     {
         return await _context.Users
-            .FirstOrDefaultAsync(x => x.Email == email, ct);
+            .FirstOrDefaultAsync(x => x.ClientId == clientId && x.Email == email, ct);
     }
 
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken ct = default)
@@ -32,9 +32,9 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(x => x.Id == id, ct);
     }
 
-    public async Task<bool> ExistsByEmailAsync(string email, CancellationToken ct = default)
+    public async Task<bool> ExistsByEmailAsync(string clientId, string email, CancellationToken ct = default)
     {
         return await _context.Users
-            .AnyAsync(x => x.Email == email, ct);
+            .AnyAsync(x => x.ClientId == clientId && x.Email == email, ct);
     }
 }

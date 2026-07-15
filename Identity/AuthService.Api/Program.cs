@@ -25,6 +25,16 @@ builder.Services.AddScoped<RegisterUserCommand>();
 builder.Services.AddScoped<LoginUserCommand>();
 builder.Services.AddScoped<GetUserDetailsQuery>();
 
+// Client registry (one entry per portfolio project consuming this service)
+var clients = configuration.GetSection("Clients").Get<Dictionary<string, ClientConfig>>()
+              ?? new Dictionary<string, ClientConfig>();
+var allowedOrigins = clients.Values
+    .SelectMany(c => c.AllowedOrigins)
+    .Distinct()
+    .ToArray();
+
+builder.Services.AddSingleton<IClientRegistry>(new ClientRegistry(clients.Keys));
+
 // JWT
 var jwtSecret = configuration["Jwt:Secret"]!;
 builder.Services.AddSingleton<ITokenService>(new JwtTokenService(jwtSecret));
@@ -50,12 +60,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-// ADD CORS HERE
+// CORS: allow the origins declared by every registered client project
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend", policy =>
+    options.AddPolicy("AllowClients", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -65,12 +75,36 @@ builder.WebHost.UseUrls("http://0.0.0.0:8080");
 
 var app = builder.Build();
 
+// Maps known application exceptions to HTTP status codes instead of an unhandled 500
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (UnauthorizedAccessException ex)
+    {
+        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+        await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+    }
+    catch (KeyNotFoundException ex)
+    {
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+    }
+    catch (Exception ex) when (ex is InvalidOperationException or ArgumentException)
+    {
+        context.Response.StatusCode = StatusCodes.Status400BadRequest;
+        await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+    }
+});
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
 
 // ENABLE CORS BEFORE AUTH
-app.UseCors("AllowFrontend");
+app.UseCors("AllowClients");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -78,3 +112,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+internal class ClientConfig
+{
+    public List<string> AllowedOrigins { get; set; } = new();
+}
