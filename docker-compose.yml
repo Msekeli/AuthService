@@ -1,13 +1,11 @@
-version: "3.8"
-
 services:
   postgres:
     image: postgres:15
     container_name: auth_postgres
     environment:
-      POSTGRES_DB: authdb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB:-authdb}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     ports:
       - "5432:5432"
     volumes:
@@ -22,9 +20,11 @@ services:
       - postgres
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=authdb;Username=postgres;Password=postgres
-      Jwt__Secret: THIS_IS_A_SUPER_SECRET_KEY_CHANGE_ME
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=${POSTGRES_DB:-authdb};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}
+      Jwt__Secret: ${JWT_SECRET:?Set JWT_SECRET in your .env file}
     ports:
       - "8080:8080"
 
-volumes: postgres_data
+volumes:
+  postgres_data:
+

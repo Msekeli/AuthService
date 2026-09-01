@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY . ./
 RUN dotnet restore
-RUN dotnet publish src/AuthService.Api/AuthService.Api.csproj -c Release -o /out
+RUN dotnet publish Identity/AuthService.Api/AuthService.Api.csproj -c Release -o /out
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
