@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SPGtW0MXFn4=",
+  "dgSpecHash": "nVPjt4hAAjc=",
   "success": true,
-  "projectFilePath": "/home/runner/work/AuthService/AuthService/AuthService.Api/AuthService.Api.csproj",
+  "projectFilePath": "/Users/admin/Desktop/AuthService/AuthService.Api/AuthService.Api.csproj",
   "expectedPackageFiles": [
-    "/home/runner/.nuget/packages/microsoft.aspnetcore.openapi/9.0.13/microsoft.aspnetcore.openapi.9.0.13.nupkg.sha512",
-    "/home/runner/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+    "/Users/admin/.nuget/packages/microsoft.aspnetcore.openapi/9.0.13/microsoft.aspnetcore.openapi.9.0.13.nupkg.sha512",
+    "/Users/admin/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }

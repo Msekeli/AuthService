@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net9.0": {
       "coverlet.collector/6.0.2": {
@@ -7,6 +7,25 @@
         "build": {
           "build/netstandard2.0/coverlet.collector.targets": {}
         }
+      },
+      "Microsoft.AspNetCore.OpenApi/9.0.13": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.CodeCoverage/17.12.0": {
         "type": "package",
@@ -39,6 +58,19 @@
         },
         "buildMultiTargeting": {
           "buildMultiTargeting/Microsoft.NET.Test.Sdk.props": {}
+        }
+      },
+      "Microsoft.OpenApi/1.6.17": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.TestPlatform.ObjectModel/17.12.0": {
@@ -411,6 +443,61 @@
         "build": {
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "AuthService.Api/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "AuthService.Application": "1.0.0",
+          "AuthService.Infrastructure": "1.0.0",
+          "Microsoft.AspNetCore.OpenApi": "9.0.13"
+        },
+        "compile": {
+          "bin/placeholder/AuthService.Api.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AuthService.Api.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "AuthService.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "AuthService.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AuthService.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AuthService.Application.dll": {}
+        }
+      },
+      "AuthService.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/AuthService.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AuthService.Domain.dll": {}
+        }
+      },
+      "AuthService.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "AuthService.Application": "1.0.0",
+          "AuthService.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AuthService.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AuthService.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -483,6 +570,22 @@
         "coverlet-icon.png",
         "coverlet.collector.6.0.2.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.OpenApi/9.0.13": {
+      "sha512": "AYSHrRDS4hpmZupq56HjBePEHVTDZ5G4ffZYCWxPcuZ129X5RowwGWSDJY9D+I4W+EpVT0vSBbE2pp6Qy2Y+8g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.openapi/9.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.xml",
+        "microsoft.aspnetcore.openapi.9.0.13.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
     "Microsoft.CodeCoverage/17.12.0": {
@@ -571,6 +674,21 @@
         "lib/netcoreapp3.1/_._",
         "microsoft.net.test.sdk.17.12.0.nupkg.sha512",
         "microsoft.net.test.sdk.nuspec"
+      ]
+    },
+    "Microsoft.OpenApi/1.6.17": {
+      "sha512": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
+      "type": "package",
+      "path": "microsoft.openapi/1.6.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.1.6.17.nupkg.sha512",
+        "microsoft.openapi.nuspec"
       ]
     },
     "Microsoft.TestPlatform.ObjectModel/17.12.0": {
@@ -932,10 +1050,34 @@
         "xunit.runner.visualstudio.2.8.2.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "AuthService.Api/1.0.0": {
+      "type": "project",
+      "path": "../AuthService.Api/AuthService.Api.csproj",
+      "msbuildProject": "../AuthService.Api/AuthService.Api.csproj"
+    },
+    "AuthService.Application/1.0.0": {
+      "type": "project",
+      "path": "../AuthService.Application/AuthService.Application.csproj",
+      "msbuildProject": "../AuthService.Application/AuthService.Application.csproj"
+    },
+    "AuthService.Domain/1.0.0": {
+      "type": "project",
+      "path": "../AuthService.Domain/AuthService.Domain.csproj",
+      "msbuildProject": "../AuthService.Domain/AuthService.Domain.csproj"
+    },
+    "AuthService.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../AuthService.Infrastructure/AuthService.Infrastructure.csproj",
+      "msbuildProject": "../AuthService.Infrastructure/AuthService.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "AuthService.Api >= 1.0.0",
+      "AuthService.Application >= 1.0.0",
+      "AuthService.Domain >= 1.0.0",
+      "AuthService.Infrastructure >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "coverlet.collector >= 6.0.2",
       "xunit >= 2.9.2",
@@ -943,19 +1085,19 @@
     ]
   },
   "packageFolders": {
-    "/home/runner/.nuget/packages/": {}
+    "/Users/admin/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/runner/work/AuthService/AuthService/AuthService.Tests/AuthService.Tests.csproj",
+      "projectUniqueName": "/Users/admin/Desktop/AuthService/AuthService.Tests/AuthService.Tests.csproj",
       "projectName": "AuthService.Tests",
-      "projectPath": "/home/runner/work/AuthService/AuthService/AuthService.Tests/AuthService.Tests.csproj",
-      "packagesPath": "/home/runner/.nuget/packages/",
-      "outputPath": "/home/runner/work/AuthService/AuthService/AuthService.Tests/obj/",
+      "projectPath": "/Users/admin/Desktop/AuthService/AuthService.Tests/AuthService.Tests.csproj",
+      "packagesPath": "/Users/admin/.nuget/packages/",
+      "outputPath": "/Users/admin/Desktop/AuthService/AuthService.Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/runner/.nuget/NuGet/NuGet.Config"
+        "/Users/admin/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -965,9 +1107,21 @@
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/admin/Desktop/AuthService/AuthService.Api/AuthService.Api.csproj": {
+              "projectPath": "/Users/admin/Desktop/AuthService/AuthService.Api/AuthService.Api.csproj"
+            },
+            "/Users/admin/Desktop/AuthService/AuthService.Application/AuthService.Application.csproj": {
+              "projectPath": "/Users/admin/Desktop/AuthService/AuthService.Application/AuthService.Application.csproj"
+            },
+            "/Users/admin/Desktop/AuthService/AuthService.Domain/AuthService.Domain.csproj": {
+              "projectPath": "/Users/admin/Desktop/AuthService/AuthService.Domain/AuthService.Domain.csproj"
+            },
+            "/Users/admin/Desktop/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj": {
+              "projectPath": "/Users/admin/Desktop/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -980,11 +1134,10 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.400"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
-        "framework": "net9.0",
         "targetAlias": "net9.0",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
@@ -1020,7 +1173,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.311/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

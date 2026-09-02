@@ -1,26 +1,45 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "AuthService.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/AuthService.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AuthService.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "AuthService.Domain/1.0.0": {
+      "type": "project",
+      "path": "../AuthService.Domain/AuthService.Domain.csproj",
+      "msbuildProject": "../AuthService.Domain/AuthService.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "AuthService.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "/home/runner/.nuget/packages/": {}
+    "/Users/admin/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/runner/work/AuthService/AuthService/AuthService.Application/AuthService.Application.csproj",
+      "projectUniqueName": "/Users/admin/Desktop/AuthService/AuthService.Application/AuthService.Application.csproj",
       "projectName": "AuthService.Application",
-      "projectPath": "/home/runner/work/AuthService/AuthService/AuthService.Application/AuthService.Application.csproj",
-      "packagesPath": "/home/runner/.nuget/packages/",
-      "outputPath": "/home/runner/work/AuthService/AuthService/AuthService.Application/obj/",
+      "projectPath": "/Users/admin/Desktop/AuthService/AuthService.Application/AuthService.Application.csproj",
+      "packagesPath": "/Users/admin/.nuget/packages/",
+      "outputPath": "/Users/admin/Desktop/AuthService/AuthService.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/runner/.nuget/NuGet/NuGet.Config"
+        "/Users/admin/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -30,9 +49,12 @@
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/admin/Desktop/AuthService/AuthService.Domain/AuthService.Domain.csproj": {
+              "projectPath": "/Users/admin/Desktop/AuthService/AuthService.Domain/AuthService.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -45,11 +67,10 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.400"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
-        "framework": "net9.0",
         "targetAlias": "net9.0",
         "imports": [
           "net461",
@@ -67,7 +88,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.311/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
