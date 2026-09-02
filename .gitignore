@@ -1,7 +1,0 @@
-.env
-bin/
-obj/
-node_modules/
-.vs/
-.vscode/
-*.user
