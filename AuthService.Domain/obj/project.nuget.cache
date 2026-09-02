@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mA487b1xk2I=",
+  "dgSpecHash": "qV5t013OqJE=",
   "success": true,
-  "projectFilePath": "/home/runner/work/AuthService/AuthService/AuthService.Domain/AuthService.Domain.csproj",
+  "projectFilePath": "/Users/admin/Desktop/AuthService/AuthService.Domain/AuthService.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
